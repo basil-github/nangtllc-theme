@@ -260,3 +260,239 @@ function custom_post_type()
 
 }
 add_action('init', 'custom_post_type', 0);
+// Register Custom Post Type
+function custom_post_type_members()
+{
+
+	$labels = array(
+		'name' => _x('Members', 'Post Type General Name', 'text_domain'),
+		'singular_name' => _x('Member', 'Post Type Singular Name', 'text_domain'),
+		'menu_name' => __('Teams', 'text_domain'),
+		'name_admin_bar' => __('Members', 'text_domain'),
+		'archives' => __('Member Archives', 'text_domain'),
+		'attributes' => __('Member Attributes', 'text_domain'),
+		'parent_item_colon' => __('Parent Member:', 'text_domain'),
+		'all_items' => __('All Members', 'text_domain'),
+		'add_new_item' => __('Add New Member', 'text_domain'),
+		'add_new' => __('Add New Member', 'text_domain'),
+		'new_item' => __('New Member', 'text_domain'),
+		'edit_item' => __('Edit Member', 'text_domain'),
+		'update_item' => __('Update Member', 'text_domain'),
+		'view_item' => __('View Member', 'text_domain'),
+		'view_items' => __('View Members', 'text_domain'),
+		'search_items' => __('Search Member', 'text_domain'),
+		'not_found' => __('Not found', 'text_domain'),
+		'not_found_in_trash' => __('Not found in Trash', 'text_domain'),
+		'featured_image' => __('Member Image', 'text_domain'),
+		'set_featured_image' => __('Set featured image', 'text_domain'),
+		'remove_featured_image' => __('Remove featured image', 'text_domain'),
+		'use_featured_image' => __('Use as featured image', 'text_domain'),
+		'insert_into_item' => __('Insert into Member', 'text_domain'),
+		'uploaded_to_this_item' => __('Uploaded to this Member', 'text_domain'),
+		'items_list' => __('Members list', 'text_domain'),
+		'items_list_navigation' => __('Members list navigation', 'text_domain'),
+		'filter_items_list' => __('Filter Members list', 'text_domain'),
+	);
+	$args = array(
+		'label' => __('member', 'text_domain'),
+		'description' => __('Teams of company', 'text_domain'),
+		'labels' => $labels,
+		'supports' => array('title', 'thumbnail'),
+		'taxonomies' => array('category', 'post_tag'),
+		'hierarchical' => false,
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'menu_position' => 5,
+		'menu_icon' => 'dashicons-groups',
+		'show_in_admin_bar' => true,
+		'show_in_nav_menus' => true,
+		'can_export' => true,
+		'has_archive' => true,
+		'exclude_from_search' => false,
+		'publicly_queryable' => true,
+		'capability_type' => 'page',
+	);
+	register_post_type('team', $args);
+
+}
+add_action('init', 'custom_post_type_members', 0);
+
+/*
+ * Plugin Name: My custom admin page
+ * Description: Adds a custom admin pages with sample styles and scripts.
+ */
+
+function my_admin_menu()
+{
+	$icon = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#E1B377" stroke="none"> <path d="M1330 2895 c0 -481 2 -875 5 -875 3 0 84 42 180 93 l175 92 0 448 c0 246 3 447 6 447 5 0 285 -157 689 -387 116 -66 300 -171 410 -233 110 -63 226 -128 258 -146 l57 -33 0 222 0 223 -885 512 c-486 282 -887 512 -890 512 -3 0 -5 -394 -5 -875z"/> <path d="M4093 3594 l-183 -106 0 -594 0 -594 -62 32 c-35 18 -66 34 -71 36 -4 2 -6 -96 -5 -219 l3 -222 249 -144 c137 -79 250 -142 252 -140 2 2 3 466 2 1030 l-3 1026 -182 -105z"/> <path d="M670 2610 l0 -990 83 49 c45 26 126 74 180 105 l97 57 0 564 0 565 76 -45 c42 -25 78 -45 80 -45 2 0 3 100 2 222 l-3 223 -254 142 c-139 79 -255 143 -257 143 -2 0 -4 -445 -4 -990z"/> <path d="M3430 3202 l-175 -109 -3 -477 c-2 -394 -5 -477 -16 -473 -7 3 -322 183 -699 401 -377 218 -688 396 -691 396 -3 0 -6 -98 -6 -217 l0 -218 48 -26 c40 -21 409 -234 1517 -872 l200 -115 3 454 c1 250 1 659 0 910 l-3 455 -175 -109z"/> </g> </svg>';
+	add_menu_page(
+		__('Nadia & Naaz', 'my-textdomain'),
+		__('Nadia & Naaz', 'my-textdomain'),
+		'manage_options',
+		'sample-page',
+		'my_admin_page_contents',
+		'data:image/svg+xml;base64,' . base64_encode($icon),
+
+		3
+	);
+}
+add_action('admin_menu', 'my_admin_menu');
+
+function my_admin_page_contents()
+{
+	?>
+	<form method="POST" action="options.php">
+		<?php
+		settings_fields('sample-page');
+		do_settings_sections('sample-page');
+		submit_button();
+		?>
+	</form>
+<?php
+}
+
+
+add_action('admin_init', 'my_settings_init');
+
+function my_settings_init()
+{
+
+	add_settings_section(
+		'sample_page_setting_section',
+		__('Settings', 'my-textdomain'),
+		'my_setting_section_callback_function',
+		'sample-page'
+	);
+	add_settings_field(
+		'is_maintenance',
+		__('Maintenance Mode', 'my-textdomain'),
+		'is_maintenance_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'copyright',
+		__('Copyright Text', 'my-textdomain'),
+		'copyright_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'fb_link',
+		__('Facebook Link', 'my-textdomain'),
+		'fb_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'in_link',
+		__('Instagram Link', 'my-textdomain'),
+		'in_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'ln_link',
+		__('LinkedIn Link', 'my-textdomain'),
+		'linkedin_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'tr_link',
+		__('Twitter Link', 'my-textdomain'),
+		'twitter_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'wp_link',
+		__('WhatsApp Link', 'my-textdomain'),
+		'wp_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+	add_settings_field(
+		'yt_link',
+		__('Youtube Link', 'my-textdomain'),
+		'yt_link_markup',
+		'sample-page',
+		'sample_page_setting_section'
+	);
+
+	register_setting('sample-page', 'is_maintenance', 'rudr_sanitize_checkbox');
+	register_setting('sample-page', 'copyright');
+	register_setting('sample-page', 'fb_link');
+	register_setting('sample-page', 'in_link');
+	register_setting('sample-page', 'ln_link');
+	register_setting('sample-page', 'tr_link');
+	register_setting('sample-page', 'yt_link');
+	register_setting('sample-page', 'wp_link');
+
+
+
+}
+
+function rudr_sanitize_checkbox($value)
+{
+	return 'on' === $value ? 'yes' : 'no';
+}
+function my_setting_section_callback_function()
+{
+	echo '';
+}
+
+function copyright_markup()
+{
+	?>
+	<input type="text" id="copyright" name="copyright" value="<?php echo get_option('copyright'); ?>">
+<?php
+}
+function fb_link_markup()
+{
+	?>
+	<input type="text" id="fb_link" name="fb_link" value="<?php echo get_option('fb_link'); ?>">
+<?php
+}
+function in_link_markup()
+{
+	?>
+	<input type="text" id="in_link" name="in_link" value="<?php echo get_option('in_link'); ?>">
+<?php
+}
+function twitter_link_markup()
+{
+	?>
+	<input type="text" id="tr_link" name="tr_link" value="<?php echo get_option('tr_link'); ?>">
+<?php
+}
+function linkedin_link_markup()
+{
+	?>
+	<input type="text" id="ln_link" name="ln_link" value="<?php echo get_option('ln_link'); ?>">
+<?php
+}
+function yt_link_markup()
+{
+	?>
+	<input type="text" id="yt_link" name="yt_link" value="<?php echo get_option('yt_link'); ?>">
+<?php
+}
+function wp_link_markup()
+{
+	?>
+	<input type="text" id="wp_link" name="wp_link" value="<?php echo get_option('wp_link'); ?>">
+<?php
+}
+
+
+function is_maintenance_markup($args)
+{
+	$value = get_option('is_maintenance');
+	?>
+	<label>
+		<input type="checkbox" name="is_maintenance" <?php checked($value, 'yes') ?> /> Yes
+	</label>
+<?php
+}
