@@ -393,16 +393,16 @@
     letter-spacing: 1px;
 }
 
-button.contact_form_submit {
+.contact_form_submit {
     background: linear-gradient(to top right, #376963 -5%, #376963 100%);
     border: none;
     color: #fff;
     padding: 10px 15px;
     width: 100%;
-    border-radius: 35px;
+    border-radius: 35px !important;
     cursor: pointer;
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 14px !important;
+    letter-spacing: 2px !important;
 }
 
 .socil_item_inner li {
@@ -645,4 +645,23 @@ section p {
 
 a:hover {
     color: #4e595f !important;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+.my-float {
+    margin-top: 16px;
 }

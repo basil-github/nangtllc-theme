@@ -102,6 +102,7 @@ function nangtllc_setup()
 	);
 }
 add_action('after_setup_theme', 'nangtllc_setup');
+add_filter('wpcf7_autop_or_not', '__return_false');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -386,7 +387,7 @@ function my_settings_init()
 		'sample_page_setting_section'
 	);
 	add_settings_field(
-		'in_link',
+		'ig_link',
 		__('Instagram Link', 'my-textdomain'),
 		'in_link_markup',
 		'sample-page',
@@ -424,7 +425,7 @@ function my_settings_init()
 	register_setting('sample-page', 'is_maintenance', 'rudr_sanitize_checkbox');
 	register_setting('sample-page', 'copyright');
 	register_setting('sample-page', 'fb_link');
-	register_setting('sample-page', 'in_link');
+	register_setting('sample-page', 'ig_link');
 	register_setting('sample-page', 'ln_link');
 	register_setting('sample-page', 'tr_link');
 	register_setting('sample-page', 'yt_link');
@@ -458,7 +459,7 @@ function fb_link_markup()
 function in_link_markup()
 {
 	?>
-	<input type="text" id="in_link" name="in_link" value="<?php echo get_option('in_link'); ?>">
+	<input type="text" id="ig_link" name="ig_link" value="<?php echo get_option('ig_link'); ?>">
 <?php
 }
 function twitter_link_markup()

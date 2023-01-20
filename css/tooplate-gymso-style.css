@@ -56125,13 +56125,37 @@ body .overlay-set-property {
 }
 
 @media only screen and (min-width: 961px) and (max-width: 1200px) {
-    .subscrpion_footer input {
+    .subscrpion_footer .wpcf7-form-control-wrap {
         width: 60%
     }
 
-    .subscrpion_footer button {
+    .subscrpion_footer .wpcf7-submit {
         width: 40%;
     }
+}
+
+.subscrpion_footer .wpcf7-form-control-wrap {
+    width: 60%
+}
+
+.subscrpion_footer .wpcf7-form-control-wrap input {
+    width: 100%
+}
+
+.subscrpion_footer .wpcf7-submit {
+    width: 40%;
+    text-transform: capitalize;
+}
+
+.subscrpion_footer .wpcf7-spinner {
+    position: absolute;
+
+}
+
+.subscrpion_footer .wpcf7-not-valid-tip {
+    position: absolute;
+    width: 180px;
+
 }
 
 .subscrpion_footer input {
@@ -56169,7 +56193,7 @@ body .overlay-set-property {
     color: #767676
 }
 
-.subscrpion_footer button {
+.subscrpion_footer .wpcf7-submit {
     background-color: #767676;
     color: #000;
     padding: 5px;
