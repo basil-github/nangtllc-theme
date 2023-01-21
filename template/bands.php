@@ -1,4 +1,4 @@
-<?php /* Template Name: Blogs */?>
+<?php /* Template Name: Brands */?>
 <?php get_header(); ?>
 <div class="hero_ hero_-small hero_-contact-us hero_-shopping-bag hero_-short">
     <div class="hero_-background-image-small-wrapper">
@@ -22,43 +22,38 @@
     <div class="hero_-content-wrapper hero_-small-content-wrapper hero_-image-small-content-wrapper">
         <div class="hero_-content-centered">
             <h1 class="hero_-title">
-                Blogs</h1>
+                Brands</h1>
         </div>
     </div>
 
 </div>
-<?php
-$loop = new WP_Query(array('post_type' => 'post'));
-if ($loop->have_posts()): ?>
-    <div class="content contact-us p-0 ">
-        <section id="blog" class="section section-sm">
-            <div class="container">
-                <div class="row">
-                    <?php $count = 0; ?>
-                    <?php while ($loop->have_posts()):
-                        $loop->the_post(); ?>
-                        <?php $count++; ?>
-                        <article class="col-lg-4 col-md-6 mb-3 clearfix wow fadeInUp" data-tilt data-aos="fade-up"
-                            data-aos-duration="<?php echo $count; ?>00ms">
-                            <div class="post-block">
-                                <div class="media-wrapper">
-                                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="amazing caves coverimage"
-                                        class="w-100">
-                                </div>
-                                <div class="content">
-                                    <h3><a href="<?php the_permalink(); ?>">
-                                            <?php the_title(); ?>
-                                        </a></h3>
-                                    <p><?php the_excerpt(); ?></p>
-                                    <a class="btn btn-transparent" href="<?php the_permalink(); ?>">Read more</a>
-                                </div>
-                            </div>
-                        </article>
-                    <?php endwhile; ?>
+<div class="content contact-us p-0 ">
+    <div class="container py-5 brands">
+        <div class="row">
 
-                </div>
-            </div>
-        </section>
+            <?php
+            $args = array(
+                'taxonomy' => 'item',
+            );
+            $cats = get_categories($args);
+            foreach ($cats as $cat) {
+                ?>
+                <a href="<?php echo get_category_link($cat->term_id) ?>" class="col-md-4 my-3 my-md-0 "
+                    data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="brand " data-tilt>
+                        <img src="<?php echo get_field('logo',$cat) ?>" alt="<?php echo $cat->name; ?>"/>
+                        <h6 class="mt-2">
+                            <?php echo $cat->name; ?>
+                        </h6>
+                        <p class="m-0 text-center"><?php echo $cat->description; ?></p>
+                    </div>
+                </a>
+            <?php
+            }
+            ?>
+
+
+        </div>
     </div>
-<?php endif; ?>
+</div>
 <?php get_footer(); ?>

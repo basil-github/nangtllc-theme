@@ -59,70 +59,48 @@
         <div class="swiper-prod-prev"></div>
         <div class="swiper-product ">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <?php
+                $args = array(
+                    'post_type' => 'product',
+                    'posts_per_page' => 10,
+                );
+
+                $loop = new WP_Query($args);
+                $inf = get_template_directory_uri() . '/images/inf.png';
+
+                while ($loop->have_posts()):
+                    $loop->the_post();
+                    $product = wc_get_product();
+                    $fid = null;
+                    $sid = null;
+                    if (count($product->get_gallery_image_ids()) >= 1) {
+                        $fid = $product->get_gallery_image_ids()[0];
+                    }
+                    if (count($product->get_gallery_image_ids()) >= 2) {
+                        $sid = $product->get_gallery_image_ids()[1];
+                    }
+
+                    echo '<a class="swiper-slide" href="' . get_permalink() . '">
                     <div class="slide-inner p-1">
                         <div class="product-card">
-                            <div class="product-tumb">
-                                <img class="first" src="images/product-card-1.webp" alt="">
-                                <img class="second" src="images/product-card.webp" alt="">
+                            <div class="product-tumb">                               
+                              <img class="first" src="' . (($sid) ? wp_get_attachment_image_src($sid, 'full')[0] : $inf) . '" alt="">
+                              <img class="second" src="' . (($fid) ? wp_get_attachment_image_src($fid, 'full')[0] : $inf) . '" alt="">
                             </div>
                             <div class="product-details">
-                                <span class="product-catagory">Infinity</span>
+                                <span class="product-catagory text-gray h6"> ' . get_the_title() . ' </span>
                                 <div class="product-bottom-details">
-                                    <div class="product-price">AED 230.99</div>
+                                    <div class="product-price">AED ' . $product->get_price() . '</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner p-1">
-                        <div class="product-card">
-                            <div class="product-tumb">
-                                <img class="first" src="images/product-card-wood.webp" alt="">
-                                <img class="second" src="images/product-card-wood-1.webp" alt="">
-                            </div>
-                            <div class="product-details">
-                                <span class="product-catagory">WooDy</span>
-                                <div class="product-bottom-details">
-                                    <div class="product-price">AED 230.99</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner p-1">
-                        <div class="product-card">
-                            <div class="product-tumb">
-                                <img class="first" src="images/product-card-rose-1.webp" alt="">
-                                <img class="second" src="images/product-card-rose.webp" alt="">
-                            </div>
-                            <div class="product-details">
-                                <span class="product-catagory">oudh rose</span>
-                                <div class="product-bottom-details">
-                                    <div class="product-price">AED 230.99</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner p-1">
-                        <div class="product-card">
-                            <div class="product-tumb">
-                                <img class="first" src="images/product-card-red.webp" alt="">
-                                <img class="second" src="images/product-card-red-1.webp" alt="">
-                            </div>
-                            <div class="product-details">
-                                <span class="product-catagory">Red crystal</span>
-                                <div class="product-bottom-details">
-                                    <div class="product-price">AED 230.99</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </a>';
+                endwhile;
+                wp_reset_query();
+                ?>
+
+
 
             </div>
             <!-- end swiper-wrapper -->
@@ -152,7 +130,7 @@
         <i class="fa fa-play" aria-hidden="true"></i>
     </div>
 </section>
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade hom_e" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -186,7 +164,8 @@
                         <span class="text-secondary text-uppercase">
                             <?php echo get_field('about')["small_title"] ?>
                         </span>
-                        <h1 class="text-uppercase font-weight-bold"><?php echo get_field('about')["long_text"] ?>
+                        <h1 class="text-uppercase font-weight-bold">
+                            <?php echo get_field('about')["long_text"] ?>
                         </h1>
                     </div>
                     <?php echo get_field('about')["description"] ?>
@@ -197,7 +176,9 @@
                                     <h4 class="media-heading">
                                         <?php echo (get_field('about')["sub_content"]["title"]); ?>
                                     </h4>
-                                    <p><?php echo (get_field('about')["sub_content"]["description_"]); ?></p>
+                                    <p>
+                                        <?php echo (get_field('about')["sub_content"]["description_"]); ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +188,9 @@
                                     <h4 class="media-heading">
                                         <?php echo (get_field('about')["sub_content_two"]["title"]); ?>
                                     </h4>
-                                    <p><?php echo (get_field('about')["sub_content_two"]["description_"]); ?></p>
+                                    <p>
+                                        <?php echo (get_field('about')["sub_content_two"]["description_"]); ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -289,54 +272,33 @@
     </div>
 </section>
 <section class="row pt-5 m-0 w-100">
-    <div class="col-md-4 mb-4 position-relative image_cards_list_main" data-aos="fade-up" data-aos-duration="800ms">
-        <div class="position-relative ">
-            <img class="w-100 image_cards_list_img " src="images/lamaat-sq.webp" />
-            <div class="list_overlay"></div>
-        </div>
-        <div class="text-left image_cards_list">
-            <span class="text-light text-uppercase">Lorem ipsum </span>
-            <h1 class="text-light text-uppercase font-weight-bold">Lorem ipsum
-            </h1>
-            <span class="button is-primary is-white">
-                <span class="button__wrapper">
-                    <span class="text-uppercase">Shop Now</span>
+    <?php $home_slider = get_field('home_grid');
+    foreach ($home_slider as $value) { ?>
+        <div class="col-md-4 mb-4 position-relative image_cards_list_main" data-aos="fade-up" data-aos-duration="1s">
+            <div class="position-relative ">
+                <img class="w-100 image_cards_list_img " src="<?php echo $value["image"] ?>" />
+                <div class="list_overlay"></div>
+            </div>
+            <div class="text-left image_cards_list">
+                <span class="text-light text-uppercase">
+                    <?php echo $value["short_text"] ?>
                 </span>
-            </span>
+                <h1 class="text-light text-uppercase font-weight-bold">
+                    <?php echo $value["title"] ?>
+                </h1>
+                <a href="<?php echo $value["link"] ?>">
+                    <span class="button is-primary is-white" data-aos="fade-up" data-aos-duration="900ms">
+                        <span class="button__wrapper">
+                            <span class="text-uppercase">Shop Now</span>
+                        </span>
+                    </span>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 mb-4 position-relative image_cards_list_main" data-aos="fade-up" data-aos-duration="900ms">
-        <div class="position-relative ">
-            <img class="w-100 image_cards_list_img " src="images/honey-sq.webp" />
-            <div class="list_overlay"></div>
-        </div>
-        <div class="text-left image_cards_list">
-            <span class="text-light text-uppercase">Lorem ipsum </span>
-            <h1 class="text-light text-uppercase font-weight-bold">Lorem ipsum
-            </h1>
-            <span class="button is-primary is-white">
-                <span class="button__wrapper">
-                    <span class="text-uppercase">Shop Now</span>
-                </span>
-            </span>
-        </div>
-    </div>
-    <div class="col-md-4 mb-4 position-relative image_cards_list_main" data-aos="fade-up" data-aos-duration="1s">
-        <div class="position-relative ">
-            <img class="w-100 image_cards_list_img " src="images/persona-sq.webp" />
-            <div class="list_overlay"></div>
-        </div>
-        <div class="text-left image_cards_list">
-            <span class="text-light text-uppercase">Lorem ipsum </span>
-            <h1 class="text-light text-uppercase font-weight-bold">Lorem ipsum
-            </h1>
-            <span class="button is-primary is-white">
-                <span class="button__wrapper">
-                    <span class="text-uppercase">Shop Now</span>
-                </span>
-            </span>
-        </div>
-    </div>
+
+    <?php
+    } ?>
+
 </section>
 <?php
 $loop = new WP_Query(array('post_type' => 'post'));
@@ -371,7 +333,9 @@ if ($loop->have_posts()): ?>
                                     <h3><a href="blog.html">
                                             <?php the_title(); ?>
                                         </a></h3>
-                                    <p><?php the_excerpt(); ?></p>
+                                    <p>
+                                        <?php the_excerpt(); ?>
+                                    </p>
                                     <a class="btn btn-transparent" href="<?php the_permalink(); ?>">Read more</a>
                                 </div>
                             </div>
@@ -429,9 +393,13 @@ if ($loop->have_posts()): ?>
                                 </div>
                                 <div class="">
                                     <a href="#" class="text-dark stretched-link">
-                                        <h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;"><?php the_title(); ?></h6>
+                                        <h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">
+                                            <?php the_title(); ?>
+                                        </h6>
                                     </a>
-                                    <p class="text-secondary" style="line-height: 2;"><?php the_excerpt(); ?></p>
+                                    <p class="text-secondary" style="line-height: 2;">
+                                        <?php the_excerpt(); ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -455,3 +423,4 @@ if ($loop->have_posts()): ?>
 <?php endif; ?>
 
 <?php get_footer(); ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/home-slider.js"></script>

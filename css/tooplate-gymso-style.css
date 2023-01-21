@@ -95,7 +95,7 @@ body {
     z-index: 1000000000 !important;
 }
 
-.modal-dialog {
+.hom_e .modal-dialog {
     max-width: 100%;
     height: 100%;
     margin: 0;
@@ -38239,35 +38239,9 @@ button.swiper-pagination-bullet {
     }
 }
 
-.search-no-results {
-    margin: 0 auto;
-    max-width: 83.875rem;
-    overflow: hidden;
-    padding-left: 5.3333333333%;
-    padding-right: 5.3333333333%
-}
 
-.search-no-results__buttons {
-    align-items: stretch;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: -2.5333333333vw;
-    margin-right: -2.5333333333vw;
-    margin-top: .8125rem
-}
 
-.search-no-results__buttons li+li {
-    margin-left: 1.25rem
-}
 
-.search-no-results .is-1 {
-    margin-bottom: 3.125rem
-}
-
-.search-no-results .text-box {
-    padding: 3.25rem 0
-}
 
 .zoom {
     background-color: #fff;

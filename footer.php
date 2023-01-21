@@ -94,8 +94,7 @@
                         <div class="control is-horizontal" data-test="lblLanguage_Footerbar">
                             <div class="control-label">
                                 <p class="heading is-7 change-language-label" lang="en">
-                                    Copyright © 2022 Nadia &amp; Naaz Perfumes, All rights
-                                    reserved.
+                                    <?php echo get_option('copyright'); ?>
                                 </p>
                             </div>
                         </div>

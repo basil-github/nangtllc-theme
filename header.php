@@ -104,20 +104,49 @@
             </div>
             <h1 class="text-uppercase">Under Maintenance</h1>
             <h2>We are sorry for the inconvenience. In the meantime, please contact us in our social media.</h2>
-            <ul class="links-list d-flex" data-test="secSocialNetworkLinks_Footer">
-                <li class="m-2">
-                    <a href="#" class="link has-icon fa fa-instagram fs-20"></a>
-                </li>
-                <li class="m-2">
-                    <a href="#" class="link has-icon fa fa-facebook fs-20"></a>
-                </li>
-                <li class="m-2">
-                    <a href="#" class="link has-icon fa fa-twitter fs-20"></a>
-                </li>
-                <li class="m-2">
-                    <a href="#" class="link has-icon fa fa-whatsapp fs-20"></a>
-                </li>
-            </ul>
+            <div class="links-list d-flex text-center" data-test="secSocialNetworkLinks_Footer">
+                <?php if (get_option('fb_link')) { ?>
+                    <li>
+                        <a href="<?php echo get_option('fb_link'); ?>" class="link has-icon fa fa-facebook fs-20"
+                            target="_blank">
+                        </a>
+                    </li>
+                <?php }
+                ?>
+                <?php if (get_option('ig_link')) { ?>
+                    <li>
+                        <a href="<?php echo get_option('ig_link'); ?>" class="link has-icon fa fa-instagram fs-20"
+                            target="_blank">
+                        </a>
+                    </li>
+                <?php }
+                ?>
+                <?php if (get_option('tr_link')) { ?>
+                    <li>
+                        <a href="<?php echo get_option('tr_link'); ?>" class="link has-icon fa fa-twitter fs-20"
+                            target="_blank">
+                        </a>
+                    </li>
+                <?php }
+                ?>
+                <?php if (get_option('ln_link')) { ?>
+                    <li>
+                        <a href="<?php echo get_option('ln_link'); ?>" class="link has-icon fa fa-linkedin fs-20"
+                            target="_blank">
+                        </a>
+                    </li>
+                <?php }
+                ?>
+                <?php if (get_option('yt_link')) { ?>
+                    <li>
+                        <a href="<?php echo get_option('yt_link'); ?>" class="link has-icon fa fa-youtube fs-20" target="_blank"
+                            style="width:20px;">
+
+                        </a>
+                    </li>
+                <?php }
+                ?>
+            </div>
         </main>
     <?php } ?>
     <?php wp_body_open(); ?>
