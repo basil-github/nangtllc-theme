@@ -665,3 +665,23 @@ a:hover {
 .my-float {
     margin-top: 16px;
 }
+
+.search_bar_com {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00203030;
+}
+
+.search_bar_com [type=search] {
+    line-height: 3.125rem;
+    border: 1px solid #ccc;
+    padding: 0 19px;
+}
+
+.search_bar_com [type=submit] {
+    text-transform: capitalize;
+    background-color: #002030;
+    color: white;
+}

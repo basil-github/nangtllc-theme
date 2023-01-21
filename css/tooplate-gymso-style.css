@@ -38159,9 +38159,7 @@ button.swiper-pagination-bullet {
     padding-left: .4375rem
 }
 
-.search-results {
-    margin-top: 1.125rem
-}
+
 
 .search-results__content {
     border-bottom: 1px solid #ececec;
@@ -38219,25 +38217,7 @@ button.swiper-pagination-bullet {
     }
 }
 
-@media screen and (min-width: 60.0625rem) {
-    .search-results {
-        margin-top: 3.25rem
-    }
-
-    .search-results__content {
-        flex-basis: auto;
-        margin-left: 16.6666666667%;
-        margin-right: 16.6666666667%;
-        padding-left: .9722222222vw;
-        padding-right: .9722222222vw;
-        width: 66.6666666667%
-    }
-
-    .search-results__content.has-nospace {
-        padding-bottom: 0;
-        padding-top: 0
-    }
-}
+@media screen and (min-width: 60.0625rem) {}
 
 
 

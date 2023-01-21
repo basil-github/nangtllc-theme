@@ -8,28 +8,26 @@
  */
 
 ?>
-
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
+<article class="ch-masonry__item   clearfix wow fadeInUp">
+	<a href="<?php the_permalink(); ?>">
+		<div class="post-block">
+			<?php if (get_the_post_thumbnail_url()) { ?>
+				<div class="media-wrapper">
+					<img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" class="w-100">
+				</div>
 			<?php
-			nangtllc_posted_on();
-			nangtllc_posted_by();
+			}
 			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+			<div class="content">
+				<h3>
+					<?php the_title(); ?>
+				</h3>
+				<p>
+					<?php the_excerpt(); ?>
+				</p>
 
-	<?php nangtllc_post_thumbnail(); ?>
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php nangtllc_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+			</div>
+		</div>
+	</a>
+</article>

@@ -40,7 +40,7 @@
                                 <a href="/about-us" class="link footer_navigation">Our Stores</a>
                             </li>
                             <li class="">
-                                <a href="/" class="link footer_navigation"> Search</a>
+                                <a href="/?s=" class="link footer_navigation"> Search</a>
                             </li>
                         </ul>
                     </div>
