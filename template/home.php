@@ -112,11 +112,13 @@
         <div class="row  pt-5">
             <div class="col-12">
                 <div class="text-center mb-5">
-                    <span class="button is-primary is-white border">
-                        <span class="button__wrapper">
-                            <span class="text-uppercase">Shop Now</span>
+                    <a href="/collocations/">
+                        <span class=" button is-primary is-white border">
+                            <span class="button__wrapper">
+                                <span class="text-uppercase">Shop Now</span>
+                            </span>
                         </span>
-                    </span>
+                    </a>
                 </div>
             </div>
         </div>

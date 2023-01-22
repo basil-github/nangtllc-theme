@@ -916,11 +916,7 @@ template {
     margin-left: 20.8333333333%
 }
 
-.col-6 {
-    flex-basis: auto;
-    padding: 1.125rem 2.5333333333vw;
-    width: 25%
-}
+
 
 .col-6.has-nospace {
     padding-bottom: 0;
@@ -1492,10 +1488,6 @@ body.grid-debug-enabled:after {
     }
 }
 
-.col-6 {
-    padding-left: 2.5333333333vw;
-    padding-right: 2.5333333333vw
-}
 
 @media screen and (min-width: 20rem) {
     .col-s-7 {
@@ -2249,10 +2241,7 @@ body.grid-debug-enabled:after {
         padding-right: 0
     }
 
-    .col-6 {
-        padding-left: .9722222222vw;
-        padding-right: .9722222222vw
-    }
+
 }
 
 @media screen and (min-width: 37.5625rem) and (min-width:37.5625rem) {
@@ -3163,10 +3152,7 @@ body.grid-debug-enabled:after {
         padding-right: 0
     }
 
-    .col-6 {
-        padding-left: .9722222222vw;
-        padding-right: .9722222222vw
-    }
+
 }
 
 @media screen and (min-width: 60.0625rem) and (min-width:60.0625rem) {
@@ -4077,10 +4063,7 @@ body.grid-debug-enabled:after {
         padding-right: 0
     }
 
-    .col-6 {
-        padding-left: .9722222222vw;
-        padding-right: .9722222222vw
-    }
+
 }
 
 @media screen and (min-width: 75rem) and (min-width:75rem) {

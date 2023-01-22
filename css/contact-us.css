@@ -685,3 +685,47 @@ a:hover {
     background-color: #002030;
     color: white;
 }
+
+.navigation_page .nav-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.navigation_page .nav-links .nav-previous,
+.nav-next {
+    background-color: #002030;
+    color: #fff;
+    padding: 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.sorting_list_page {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+.sorting_list_page select {
+    color: #ffff;
+    background-color: #002030;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.fixed_logo_only {
+    bottom: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 15px);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-color: #051f31;
+    padding: 0px 6px;
+}
+
+
+#js-logo:hover {
+    transform: rotate(0) !important;
+
+}

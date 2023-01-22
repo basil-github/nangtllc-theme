@@ -63,12 +63,25 @@
                     <div class="footer__sections-container">
                         <p class="heading is-6 text-uppercase">CATALOG</p>
                         <ul class="links-list">
-                            <li class="">
-                                <a href="/" class="link footer_navigation"> For him </a>
-                            </li>
-                            <li class="">
-                                <a href="/" class="link footer_navigation"> For her </a>
-                            </li>
+                            <?php
+
+                            $args = array(
+                                'taxonomy' => 'product_tag',
+                            );
+                            $cats = get_categories($args);
+                            foreach ($cats as $cat) {
+                                ?>
+                                <li>
+                                    <a href="<?php echo get_category_link($cat->term_id) ?>">
+                                        <span>
+                                            <?php echo $cat->name; ?>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            <?php
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -77,7 +90,7 @@
                         <p class="heading is-6 text-uppercase">MAIN MENU</p>
                         <ul class="links-list">
                             <li class="">
-                                <a href="/" class="link footer_navigation">Collections </a>
+                                <a href="/collocations" class="link footer_navigation">Collections </a>
                             </li>
                             <li class="">
                                 <a href="/blogs" class="link footer_navigation">Blogs </a>

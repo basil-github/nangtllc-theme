@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/tooplate-gymso-style.css" />
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/contact-us.css" />
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/swiper.min.css" />
-    <?php wp_head(); ?>
+    <?php wp_head();
+    $icon = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#E1B377" stroke="none"> <path d="M1330 2895 c0 -481 2 -875 5 -875 3 0 84 42 180 93 l175 92 0 448 c0 246 3 447 6 447 5 0 285 -157 689 -387 116 -66 300 -171 410 -233 110 -63 226 -128 258 -146 l57 -33 0 222 0 223 -885 512 c-486 282 -887 512 -890 512 -3 0 -5 -394 -5 -875z"/> <path d="M4093 3594 l-183 -106 0 -594 0 -594 -62 32 c-35 18 -66 34 -71 36 -4 2 -6 -96 -5 -219 l3 -222 249 -144 c137 -79 250 -142 252 -140 2 2 3 466 2 1030 l-3 1026 -182 -105z"/> <path d="M670 2610 l0 -990 83 49 c45 26 126 74 180 105 l97 57 0 564 0 565 76 -45 c42 -25 78 -45 80 -45 2 0 3 100 2 222 l-3 223 -254 142 c-139 79 -255 143 -257 143 -2 0 -4 -445 -4 -990z"/> <path d="M3430 3202 l-175 -109 -3 -477 c-2 -394 -5 -477 -16 -473 -7 3 -322 183 -699 401 -377 218 -688 396 -691 396 -3 0 -6 -98 -6 -217 l0 -218 48 -26 c40 -21 409 -234 1517 -872 l200 -115 3 454 c1 250 1 659 0 910 l-3 455 -175 -109z"/> </g> </svg>';
+    ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -150,6 +152,7 @@
         </main>
     <?php } ?>
     <?php wp_body_open(); ?>
+
     <div id="page" class="site">
         <?php if (get_option('is_maintenance') != "yes") {
             ?>
@@ -189,35 +192,29 @@
                                         </a>
                                         <ul class="extras">
                                             <li>
-                                                <a href="/">
+                                                <a href="/collocations">
                                                     <span>All</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="/">
-                                                    <span>BOUQUET</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/">
-                                                    <span>EDICT</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/">
-                                                    <span>All</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/">
-                                                    <span>BOUQUET </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/">
-                                                    <span>EDICT</span>
-                                                </a>
-                                            </li>
+                                            <?php
+
+                                            $args = array(
+                                                'taxonomy' => 'product_cat',
+                                            );
+                                            $cats = get_categories($args);
+                                            foreach ($cats as $cat) {
+                                                ?>
+                                                <li>
+                                                    <a href="<?php echo get_category_link($cat->term_id) ?>">
+                                                        <span>
+                                                            <?php echo $cat->name; ?>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <li class="js-header-entry">
@@ -237,6 +234,12 @@
                                     </li>
                                 </ul>
                             </nav>
+                            <div class="fixed_logo_only">
+                                <a href="/">
+                                    <img id="js-logo" class="" role="img" alt="logo" data-test="lnkLogo"
+                                        src='data:image/svg+xml;base64,<?php echo base64_encode($icon) ?>' />
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="menu_mob">
@@ -268,35 +271,29 @@
                                 </a>
                                 <ul class="pl-2">
                                     <li>
-                                        <a href="/">
+                                        <a href="/collocations">
                                             <span>All</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="/">
-                                            <span>BOUQUET</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/">
-                                            <span>EDICT</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/">
-                                            <span>All</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/">
-                                            <span>BOUQUET </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/">
-                                            <span>EDICT</span>
-                                        </a>
-                                    </li>
+                                    <?php
+
+                                    $args = array(
+                                        'taxonomy' => 'product_cat',
+                                    );
+                                    $cats = get_categories($args);
+                                    foreach ($cats as $cat) {
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo get_category_link($cat->term_id) ?>">
+                                                <span>
+                                                    <?php echo $cat->name; ?>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </li>
                             <li class="js-header-entry">
